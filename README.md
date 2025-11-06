@@ -1,73 +1,73 @@
-# IBC Wastewater Treatment System
+# IBC Abwasserbehandlungssystem
 
 **Kooperationsprojekt Elektrotechnik und Siedlungswasserwirtschaft**
 Hochschule Koblenz
 
-A modular, IoT-enabled wastewater treatment system designed to retrofit standard IBC (Intermediate Bulk Container) containers into functional treatment plants for decentralized sanitation solutions.
+Ein modulares, IoT-fähiges Abwasserbehandlungssystem, das Standard-IBC-Container (Intermediate Bulk Container) in funktionsfähige Kläranlagen für dezentrale Sanitärlösungen umrüstet.
 
-## Project Overview
+## Projektübersicht
 
-This project develops a complete control and monitoring system for an IBC-based wastewater treatment plant. The system features:
+Dieses Projekt entwickelt ein vollständiges Steuerungs- und Überwachungssystem für eine IBC-basierte Abwasserbehandlungsanlage. Das System bietet:
 
-- **Automated multi-phase treatment process** (Filling → Aeration → Settling → Draining)
-- **Real-time monitoring dashboard** with live data visualization
-- **Remote control capabilities** via web interface
-- **Hardware abstraction** allowing development on Windows and deployment on Raspberry Pi
-- **Data logging and analytics** for performance analysis
-- **Safety features** including emergency stop and alarm systems
+- **Automatisierter mehrphasiger Behandlungsprozess** (Füllen → Belüften → Absetzen → Ablassen)
+- **Echtzeit-Überwachungsdashboard** mit Live-Datenvisualisierung
+- **Fernsteuerungsfähigkeiten** über Weboberfläche
+- **Hardware-Abstraktion**, die Entwicklung unter Windows und Einsatz auf Raspberry Pi ermöglicht
+- **Datenprotokollierung und Analytik** für Leistungsanalyse
+- **Sicherheitsfunktionen** einschließlich Not-Aus und Alarmsystemen
 
-## Architecture
+## Architektur
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     Web Dashboard (React)                    │
-│  • Real-time monitoring  • Control panel  • Data analytics  │
+│                  Web-Dashboard (React)                       │
+│  • Echtzeitüberwachung  • Bedienfeld  • Datenanalyse       │
 └────────────────┬────────────────────────────────────────────┘
                  │ WebSocket + REST API
 ┌────────────────┴────────────────────────────────────────────┐
-│                  Backend Server (Flask)                      │
-│  • WebSocket server  • REST API  • Data logging             │
+│                  Backend-Server (Flask)                      │
+│  • WebSocket-Server  • REST API  • Datenprotokollierung    │
 └────────────────┬────────────────────────────────────────────┘
                  │
 ┌────────────────┴────────────────────────────────────────────┐
-│              Treatment Controller (Python)                   │
-│  • Phase management  • Safety monitoring  • Event handling  │
+│           Behandlungssteuerung (Python)                      │
+│  • Phasenverwaltung  • Sicherheitsüberwachung  • Events    │
 └────────────────┬────────────────────────────────────────────┘
                  │
 ┌────────────────┴────────────────────────────────────────────┐
-│          Hardware Abstraction Layer (GPIO)                   │
-│  • Mock mode (Windows)  • GPIO mode (Raspberry Pi)          │
+│          Hardware-Abstraktionsschicht (GPIO)                 │
+│  • Mock-Modus (Windows)  • GPIO-Modus (Raspberry Pi)        │
 └────────────────┬────────────────────────────────────────────┘
                  │
 ┌────────────────┴────────────────────────────────────────────┐
-│                Physical Components (IBC)                     │
-│  • Pumps (inlet/recirculation/outlet)  • Air blower         │
-│  • Ultrasonic level sensor  • Relay control module          │
+│              Physikalische Komponenten (IBC)                 │
+│  • Pumpen (Zulauf/Umwälzung/Ablauf)  • Luftgebläse         │
+│  • Ultraschall-Füllstandssensor  • Relais-Steuermodul      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Project Structure
+## Projektstruktur
 
 ```
 praxis/
-├── backend/                    # Python Flask backend
-│   ├── app.py                  # Main application
-│   ├── config/                 # Configuration files
+├── backend/                    # Python Flask Backend
+│   ├── app.py                  # Hauptanwendung
+│   ├── config/                 # Konfigurationsdateien
 │   │   └── treatment_config.yaml
-│   ├── controller/             # Treatment process logic
+│   ├── controller/             # Behandlungsprozesslogik
 │   │   └── treatment_controller.py
-│   ├── database/               # Database models
+│   ├── database/               # Datenbankmodelle
 │   │   └── models.py
-│   ├── hardware/               # Hardware abstraction
+│   ├── hardware/               # Hardware-Abstraktion
 │   │   └── gpio_interface.py
 │   ├── requirements.txt
-│   ├── .env                    # Environment variables
+│   ├── .env                    # Umgebungsvariablen
 │   └── README.md
 │
-├── frontend/                   # React web dashboard
+├── frontend/                   # React Web-Dashboard
 │   ├── src/
-│   │   ├── App.jsx             # Main application
-│   │   ├── components/         # React components
+│   │   ├── App.jsx             # Hauptanwendung
+│   │   ├── components/         # React-Komponenten
 │   │   │   ├── StatusCard.jsx
 │   │   │   ├── ControlPanel.jsx
 │   │   │   ├── WaterLevelChart.jsx
@@ -80,310 +80,310 @@ praxis/
 │   ├── vite.config.js
 │   └── index.html
 │
-├── docs/                       # Documentation
-│   └── lab_manual.md           # Lab practical manual
+├── docs/                       # Dokumentation
+│   └── lab_manual.md           # Laborpraktikumsanleitung
 │
-└── README.md                   # This file
+└── README.md                   # Diese Datei
 ```
 
-## Quick Start (Windows Development)
+## Schnellstart (Windows-Entwicklung)
 
-### Prerequisites
+### Voraussetzungen
 
 - Python 3.8+
-- Node.js 16+ and npm
+- Node.js 16+ und npm
 - Git
 
-### 1. Clone and Setup Backend
+### 1. Klonen und Backend einrichten
 
 ```bash
 cd backend
 
-# Create virtual environment
+# Virtuelle Umgebung erstellen
 python -m venv venv
 
-# Activate virtual environment
-# On Windows:
+# Virtuelle Umgebung aktivieren
+# Unter Windows:
 venv\Scripts\activate
-# On Linux/Mac:
+# Unter Linux/Mac:
 source venv/bin/activate
 
-# Install dependencies
+# Abhängigkeiten installieren
 pip install -r requirements.txt
 
-# Start backend server
+# Backend-Server starten
 python app.py
 ```
 
-Backend will start on `http://localhost:5000`
+Das Backend startet auf `http://localhost:5000`
 
-### 2. Setup Frontend (New Terminal)
+### 2. Frontend einrichten (Neues Terminal)
 
 ```bash
 cd frontend
 
-# Install dependencies
+# Abhängigkeiten installieren
 npm install
 
-# Start development server
+# Entwicklungsserver starten
 npm run dev
 ```
 
-Frontend will start on `http://localhost:3000`
+Das Frontend startet auf `http://localhost:3000`
 
-### 3. Access the Dashboard
+### 3. Auf das Dashboard zugreifen
 
-Open your browser and navigate to `http://localhost:3000`
+Öffnen Sie Ihren Browser und navigieren Sie zu `http://localhost:3000`
 
-You should see the IBC Wastewater Treatment System dashboard with:
-- Real-time system status
-- Control panel (Start/Stop/Pause/Emergency Stop)
-- Live water level chart
-- Component status indicators
-- Phase timeline
-- Event log and statistics
+Sie sollten das IBC-Abwasserbehandlungssystem-Dashboard sehen mit:
+- Echtzeit-Systemstatus
+- Bedienfeld (Start/Stopp/Pause/Not-Aus)
+- Live-Wasserstand-Diagramm
+- Komponentenstatusanzeigen
+- Phasen-Zeitachse
+- Ereignisprotokoll und Statistiken
 
-## Treatment Process
+## Behandlungsprozess
 
-The system automatically manages a 4-phase treatment cycle:
+Das System verwaltet automatisch einen 4-Phasen-Behandlungszyklus:
 
-### Phase 1: Filling (Variable Duration)
-- **Objective**: Fill tank to operating level
-- **Active Components**: Inlet pump
-- **Completion**: When water level reaches target (30cm from sensor)
-- **Timeout**: 10 minutes
+### Phase 1: Füllen (Variable Dauer)
+- **Ziel**: Tank auf Betriebsniveau füllen
+- **Aktive Komponenten**: Zulaufpumpe
+- **Abschluss**: Wenn Wasserstand Zielwert erreicht (30cm vom Sensor)
+- **Timeout**: 10 Minuten
 
-### Phase 2: Aeration (2 hours)
-- **Objective**: Biological treatment through aeration
-- **Active Components**: Air blower (continuous), Recirculation pump (intermittent)
-- **Recirculation**: 1 minute every 15 minutes
-- **Purpose**: Oxygen supply for aerobic bacteria
+### Phase 2: Belüftung (2 Stunden)
+- **Ziel**: Biologische Behandlung durch Belüftung
+- **Aktive Komponenten**: Luftgebläse (kontinuierlich), Umwälzpumpe (intermittierend)
+- **Umwälzung**: 1 Minute alle 15 Minuten
+- **Zweck**: Sauerstoffversorgung für aerobe Bakterien
 
-### Phase 3: Settling (1 hour)
-- **Objective**: Allow solids to settle
-- **Active Components**: None (all off)
-- **Purpose**: Gravity separation of biomass
+### Phase 3: Absetzen (1 Stunde)
+- **Ziel**: Feststoffe absetzen lassen
+- **Aktive Komponenten**: Keine (alle aus)
+- **Zweck**: Schwerkraft-Trennung der Biomasse
 
-### Phase 4: Draining (Variable Duration)
-- **Objective**: Discharge treated effluent
-- **Active Components**: Outlet pump
-- **Completion**: When water level reaches target (100cm from sensor)
-- **Timeout**: 10 minutes
+### Phase 4: Ablassen (Variable Dauer)
+- **Ziel**: Behandeltes Abwasser ableiten
+- **Aktive Komponenten**: Ablaufpumpe
+- **Abschluss**: Wenn Wasserstand Zielwert erreicht (100cm vom Sensor)
+- **Timeout**: 10 Minuten
 
-## Features
+## Funktionen
 
-### Web Dashboard
-- **Real-time Monitoring**: Live updates every 10 seconds via WebSocket
-- **Control Panel**: Start, stop, pause, resume, and emergency stop functions
-- **Data Visualization**: Interactive charts showing water level trends
-- **Component Status**: Visual indicators for all pumps and blower
-- **Phase Progress**: Timeline showing current treatment phase
-- **Event Logging**: Comprehensive log of all system events
-- **Statistics**: Cycle count, runtime, and error tracking
+### Web-Dashboard
+- **Echtzeitüberwachung**: Live-Updates alle 10 Sekunden via WebSocket
+- **Bedienfeld**: Start-, Stopp-, Pause-, Fortsetzen- und Not-Aus-Funktionen
+- **Datenvisualisierung**: Interaktive Diagramme mit Wasserstand-Trends
+- **Komponentenstatus**: Visuelle Anzeigen für alle Pumpen und Gebläse
+- **Phasenfortschritt**: Zeitachse zeigt aktuelle Behandlungsphase
+- **Ereignisprotokollierung**: Umfassendes Protokoll aller Systemereignisse
+- **Statistiken**: Zyklusanzahl, Laufzeit und Fehlerverfolgung
 
-### Backend System
-- **RESTful API**: Complete control and data access via HTTP endpoints
-- **WebSocket Server**: Real-time bidirectional communication
-- **Treatment Controller**: Autonomous multi-phase cycle management
-- **Safety Monitoring**: Level alarms, timeout protection, emergency stop
-- **Data Logging**: SQLite database for sensor readings and events
-- **Hardware Abstraction**: Seamless switching between mock and real GPIO
+### Backend-System
+- **RESTful API**: Vollständige Steuerung und Datenzugriff über HTTP-Endpunkte
+- **WebSocket-Server**: Echtzeitkommunikation in beide Richtungen
+- **Behandlungssteuerung**: Autonome Mehrphasen-Zyklusverwaltung
+- **Sicherheitsüberwachung**: Füllstandsalarme, Timeout-Schutz, Not-Aus
+- **Datenprotokollierung**: SQLite-Datenbank für Sensorwerte und Ereignisse
+- **Hardware-Abstraktion**: Nahtloser Wechsel zwischen Mock- und echtem GPIO
 
-### Safety Features
-- **Emergency Stop**: Immediate shutdown of all components
-- **High/Low Level Alarms**: Automatic shutdown on dangerous water levels
-- **Timeout Protection**: Maximum runtime limits for all components
-- **Cycle Duration Limit**: 12-hour maximum cycle timeout
-- **Pump Protection**: Minimum interval between pump starts
+### Sicherheitsfunktionen
+- **Not-Aus**: Sofortiges Abschalten aller Komponenten
+- **Hoch-/Niedrig-Füllstandsalarme**: Automatisches Abschalten bei gefährlichen Wasserständen
+- **Timeout-Schutz**: Maximale Laufzeitgrenzen für alle Komponenten
+- **Zyklusdauerbegrenzung**: 12-Stunden-Maximum für Zyklus-Timeout
+- **Pumpenschutz**: Mindestintervall zwischen Pumpenstarts
 
-## Configuration
+## Konfiguration
 
-Edit `backend/config/treatment_config.yaml` to customize:
+Bearbeiten Sie `backend/config/treatment_config.yaml` zur Anpassung:
 
 ```yaml
 treatment_phases:
   filling:
-    target_level: 30        # cm from sensor
-    max_duration: 600       # seconds
+    target_level: 30        # cm vom Sensor
+    max_duration: 600       # Sekunden
   aeration:
-    duration: 7200          # 2 hours
+    duration: 7200          # 2 Stunden
     recirculation_interval: 900
     recirculation_duration: 60
   settling:
-    duration: 3600          # 1 hour
+    duration: 3600          # 1 Stunde
   draining:
-    target_level: 100       # cm from sensor
+    target_level: 100       # cm vom Sensor
     max_duration: 600
 
 safety:
-  high_level_alarm: 15      # cm (very high water)
-  low_level_alarm: 120      # cm (very low water)
-  max_cycle_duration: 43200 # 12 hours
+  high_level_alarm: 15      # cm (sehr hoher Wasserstand)
+  low_level_alarm: 120      # cm (sehr niedriger Wasserstand)
+  max_cycle_duration: 43200 # 12 Stunden
 
 logging:
-  interval: 10              # seconds
+  interval: 10              # Sekunden
   retain_days: 30
 ```
 
-## API Endpoints
+## API-Endpunkte
 
-### Control
-- `POST /api/control/start` - Start treatment cycle
-- `POST /api/control/stop` - Stop treatment cycle
-- `POST /api/control/pause` - Pause current cycle
-- `POST /api/control/resume` - Resume paused cycle
-- `POST /api/control/emergency-stop` - Emergency shutdown
-- `POST /api/control/reset-emergency` - Reset emergency stop
-- `POST /api/control/component` - Manual component control
+### Steuerung
+- `POST /api/control/start` - Behandlungszyklus starten
+- `POST /api/control/stop` - Behandlungszyklus stoppen
+- `POST /api/control/pause` - Aktuellen Zyklus pausieren
+- `POST /api/control/resume` - Pausierten Zyklus fortsetzen
+- `POST /api/control/emergency-stop` - Not-Abschaltung
+- `POST /api/control/reset-emergency` - Not-Aus zurücksetzen
+- `POST /api/control/component` - Manuelle Komponentensteuerung
 
-### Monitoring
-- `GET /api/status` - Current system status
-- `GET /api/data/readings` - Sensor reading history
-- `GET /api/data/events` - System events log
-- `GET /api/data/cycles` - Treatment cycle history
+### Überwachung
+- `GET /api/status` - Aktueller Systemstatus
+- `GET /api/data/readings` - Sensorwert-Historie
+- `GET /api/data/events` - Systemereignis-Protokoll
+- `GET /api/data/cycles` - Behandlungszyklus-Historie
 
-## Deployment to Raspberry Pi
+## Einsatz auf Raspberry Pi
 
-### Hardware Requirements
-- Raspberry Pi 4 (recommended) or Pi 3B+
-- 4-channel relay module
-- HC-SR04 ultrasonic distance sensor
-- 12V/24V pumps (inlet, recirculation, outlet)
-- Air blower
-- Power supply
+### Hardware-Anforderungen
+- Raspberry Pi 4 (empfohlen) oder Pi 3B+
+- 4-Kanal-Relaismodul
+- HC-SR04 Ultraschall-Abstandssensor
+- 12V/24V Pumpen (Zulauf, Umwälzung, Ablauf)
+- Luftgebläse
+- Stromversorgung
 
-### Software Deployment
+### Software-Bereitstellung
 
-1. **Transfer Files**
+1. **Dateien übertragen**
 ```bash
-# From your development machine
+# Von Ihrem Entwicklungsrechner
 scp -r backend/ pi@raspberrypi.local:~/ibc-treatment/
 scp -r frontend/dist pi@raspberrypi.local:~/ibc-treatment/
 ```
 
-2. **Update Configuration**
+2. **Konfiguration aktualisieren**
 ```bash
-# On Raspberry Pi
+# Auf dem Raspberry Pi
 cd ~/ibc-treatment/backend
 nano .env
-# Change: HARDWARE_MODE=gpio
+# Ändern: HARDWARE_MODE=gpio
 ```
 
-3. **Wire GPIO Connections** (as per configuration)
-- GPIO 17: Inlet Pump
-- GPIO 27: Recirculation Pump
-- GPIO 22: Outlet Pump
-- GPIO 23: Air Blower
-- GPIO 24: Ultrasonic Trigger
-- GPIO 25: Ultrasonic Echo
+3. **GPIO-Verbindungen verkabeln** (gemäß Konfiguration)
+- GPIO 17: Zulaufpumpe
+- GPIO 27: Umwälzpumpe
+- GPIO 22: Ablaufpumpe
+- GPIO 23: Luftgebläse
+- GPIO 24: Ultraschall-Trigger
+- GPIO 25: Ultraschall-Echo
 
-4. **Run Backend**
+4. **Backend ausführen**
 ```bash
 cd ~/ibc-treatment/backend
 python3 app.py
 ```
 
-5. **Serve Frontend** (use nginx or similar)
+5. **Frontend bereitstellen** (nginx oder ähnlich verwenden)
 
-## Development vs Production
+## Entwicklung vs. Produktion
 
-### Development (Windows/Mac)
-- **Hardware Mode**: `mock` (simulated GPIO)
-- **Purpose**: Development, testing, demonstration
-- **Features**: Full functionality with simulated water level changes
+### Entwicklung (Windows/Mac)
+- **Hardware-Modus**: `mock` (simuliertes GPIO)
+- **Zweck**: Entwicklung, Tests, Demonstration
+- **Funktionen**: Volle Funktionalität mit simulierten Wasserstandsänderungen
 
-### Production (Raspberry Pi)
-- **Hardware Mode**: `gpio` (real GPIO control)
-- **Purpose**: Actual wastewater treatment
-- **Requirements**: Proper electrical wiring, safety measures
+### Produktion (Raspberry Pi)
+- **Hardware-Modus**: `gpio` (echte GPIO-Steuerung)
+- **Zweck**: Tatsächliche Abwasserbehandlung
+- **Anforderungen**: Ordnungsgemäße elektrische Verkabelung, Sicherheitsmaßnahmen
 
-## Testing
+## Tests
 
-### Backend Tests
+### Backend-Tests
 ```bash
 cd backend
 pytest tests/
 ```
 
-### Frontend Tests
+### Frontend-Tests
 ```bash
 cd frontend
 npm test
 ```
 
-### Manual Testing Checklist
-- [ ] Start/stop cycle functionality
-- [ ] Pause/resume during each phase
-- [ ] Emergency stop activation and reset
-- [ ] Manual component control (when not running)
-- [ ] WebSocket connection stability
-- [ ] Data logging and retrieval
-- [ ] Phase transitions
-- [ ] Safety alarm triggers
+### Manuelle Test-Checkliste
+- [ ] Start/Stopp-Zyklusfunktionalität
+- [ ] Pausieren/Fortsetzen während jeder Phase
+- [ ] Not-Aus-Aktivierung und -Zurücksetzung
+- [ ] Manuelle Komponentensteuerung (wenn nicht laufend)
+- [ ] WebSocket-Verbindungsstabilität
+- [ ] Datenprotokollierung und -abruf
+- [ ] Phasenübergänge
+- [ ] Sicherheitsalarmauslösung
 
-## Lab Practical Use
+## Laborpraktische Verwendung
 
-This system is designed for use in laboratory practicals at Hochschule Koblenz:
+Dieses System ist für den Einsatz in Laborpraktika an der Hochschule Koblenz konzipiert:
 
-1. **Understanding wastewater treatment processes**
-2. **Learning process control and automation**
-3. **Practicing sensor integration and monitoring**
-4. **Experiencing real-time data visualization**
-5. **Exploring IoT and remote control concepts**
+1. **Verstehen von Abwasserbehandlungsprozessen**
+2. **Lernen von Prozesssteuerung und Automatisierung**
+3. **Üben von Sensorintegration und -überwachung**
+4. **Erleben von Echtzeit-Datenvisualisierung**
+5. **Erkunden von IoT- und Fernsteuerungskonzepten**
 
-See `docs/lab_manual.md` for complete laboratory instructions.
+Siehe `docs/lab_manual.md` für vollständige Laboranweisungen.
 
-## Troubleshooting
+## Fehlerbehebung
 
-### Backend won't start
-- Check Python version (3.8+)
-- Ensure virtual environment is activated
-- Verify all dependencies installed: `pip install -r requirements.txt`
-- Check port 5000 is not in use
+### Backend startet nicht
+- Python-Version überprüfen (3.8+)
+- Sicherstellen, dass virtuelle Umgebung aktiviert ist
+- Alle Abhängigkeiten überprüfen: `pip install -r requirements.txt`
+- Prüfen, ob Port 5000 nicht verwendet wird
 
-### Frontend won't connect
-- Verify backend is running on port 5000
-- Check browser console for errors
-- Ensure WebSocket connection allowed by firewall
-- Try clearing browser cache
+### Frontend verbindet sich nicht
+- Überprüfen, ob Backend auf Port 5000 läuft
+- Browser-Konsole auf Fehler prüfen
+- Sicherstellen, dass WebSocket-Verbindung durch Firewall erlaubt ist
+- Browser-Cache leeren versuchen
 
-### GPIO errors on Pi
-- Run with sudo: `sudo python3 app.py`
-- Check GPIO pin connections
-- Verify BCM pin numbering in config
-- Ensure no other process using GPIO
+### GPIO-Fehler auf Pi
+- Mit sudo ausführen: `sudo python3 app.py`
+- GPIO-Pin-Verbindungen überprüfen
+- BCM-Pin-Nummerierung in Konfiguration verifizieren
+- Sicherstellen, dass kein anderer Prozess GPIO verwendet
 
-## Future Enhancements
+## Zukünftige Erweiterungen
 
-- [ ] pH and dissolved oxygen sensors
-- [ ] Advanced scheduling (time-based cycles)
-- [ ] Mobile app (React Native)
-- [ ] Multi-tank management
-- [ ] Machine learning for optimization
-- [ ] Cloud data backup
-- [ ] Email/SMS alerts
-- [ ] Energy consumption monitoring
+- [ ] pH- und Gelöstsauerstoff-Sensoren
+- [ ] Erweiterte Planung (zeitbasierte Zyklen)
+- [ ] Mobile App (React Native)
+- [ ] Mehrfach-Tank-Verwaltung
+- [ ] Machine Learning zur Optimierung
+- [ ] Cloud-Datensicherung
+- [ ] E-Mail/SMS-Benachrichtigungen
+- [ ] Energieverbrauchsüberwachung
 
-## Authors
+## Autoren
 
-**Praxisphase Project**
+**Praxisphase-Projekt**
 Hochschule Koblenz - University of Applied Sciences
-Faculty of Engineering
+Fachbereich Ingenieurwesen
 
-**Cooperation between:**
+**Kooperation zwischen:**
 - Elektrotechnik (Electrical Engineering)
 - Siedlungswasserwirtschaft (Water Resources Management)
 
-## License
+## Lizenz
 
-This project is developed for educational purposes at Hochschule Koblenz.
+Dieses Projekt wurde für Bildungszwecke an der Hochschule Koblenz entwickelt.
 
-## Acknowledgments
+## Danksagungen
 
-- Hochschule Koblenz for project support
-- Faculty advisors and laboratory staff
-- Open-source community for tools and libraries
+- Hochschule Koblenz für die Projektunterstützung
+- Fakultätsberater und Laborpersonal
+- Open-Source-Community für Werkzeuge und Bibliotheken
 
 ---
 
-For questions or issues, please contact the project supervisor at Hochschule Koblenz.
+Bei Fragen oder Problemen wenden Sie sich bitte an den Projektbetreuer der Hochschule Koblenz.
